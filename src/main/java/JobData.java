@@ -112,6 +112,8 @@ public class JobData {
 //                    System.out.println("Key=" + key + ", Value=" + value);
 //                }
 //            }
+            //resource for searching strings.
+            //https://www.studytonight.com/java-examples/how-to-find-a-word-or-substring-in-string
             for (Map.Entry<String, String> line : entry.entrySet()) {
                 String lineKey = line.getKey();
                 String lineValue = line.getValue();
