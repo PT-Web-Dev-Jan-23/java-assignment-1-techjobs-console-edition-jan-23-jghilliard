@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+
 import java.util.Scanner;
 
 /**
@@ -77,7 +77,7 @@ public class TechJobs {
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
 
-        // Put the choices in an ordered structure so we can
+        // Put the choices in an ordered structure so that we can
         // associate an integer with each one
         int i = 0;
         for (String choiceKey : choices.keySet()) {
@@ -119,7 +119,18 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        if (someJobs.size() == 0){
+            System.out.print("No Results");
+        } else {
+            for (HashMap<String, String> entry : someJobs) {
+                System.out.println("\n*****");
+                for (String key : entry.keySet()) {
+                    System.out.println(key + ": " + entry.get(key));
+                }
+                System.out.println("*****");
+            }
 
-        System.out.println("printJobs is not implemented yet");
+        }
+
     }
 }

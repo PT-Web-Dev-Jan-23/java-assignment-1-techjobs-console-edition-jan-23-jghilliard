@@ -5,10 +5,8 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -72,12 +70,14 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
+        value = value.toLowerCase();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
+            aValue = aValue.toLowerCase();
 
             if (aValue.contains(value)) {
                 jobs.add(row);
@@ -99,7 +99,34 @@ public class JobData {
         loadData();
 
         // TODO - implement this method
-        return null;
+        value = value.toLowerCase();
+        ArrayList<HashMap<String, String>> foundJobs = new ArrayList<>();
+        for (HashMap<String, String> entry : allJobs) {
+
+
+            //sentry.io EXAMPLE
+//            public static void iterateUsingForEach(Map<String, String> map) {
+//                for (Map.Entry<String, String> entry : map.entrySet()) {
+//                    String key = entry.getKey();
+//                    String value = entry.getValue();
+//                    System.out.println("Key=" + key + ", Value=" + value);
+//                }
+//            }
+            //resource for searching strings.
+            //https://www.studytonight.com/java-examples/how-to-find-a-word-or-substring-in-string
+            for (Map.Entry<String, String> line : entry.entrySet()) {
+                String lineKey = line.getKey();
+                String lineValue = line.getValue();
+                lineKey = lineKey.toLowerCase();
+                lineValue = lineValue.toLowerCase();
+                if (lineKey.contains(value) || lineValue.contains(value)) {
+                    if (!foundJobs.contains(entry)) {
+                        foundJobs.add(entry);
+                    }
+                }
+            }
+        }
+        return foundJobs;
     }
 
     /**
